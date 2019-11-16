@@ -12,10 +12,12 @@ Stuff I want:
 * regular button / pot / rotary encoder input support
 
 * Utilities
-  - mults / sums / attenuverters / mixers / steal ideas from Maths
+  - attenuverters - can act as inputs also?  If out is connected, disconnect teensy input or duplicate?  2 outs makes attenuverted mult?
+  - static CV sources (attenuverters with no inputs?)
+  - mults / sums / mixers / steal ideas from Maths
   - LFOs - feedback LED, +/- outputs and or duplicate outs - params controllable by MIDI or CV, multiple mixable shapes
   - envelopes - feedback LED, +/- outs and/or dupes - params controllable by MIDI or CV
   - CV note quantizers
-  - static CV sources (attenuverters with no inputs?)
   - slew limiter
   - CV delay
+  
