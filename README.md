@@ -20,4 +20,7 @@ Stuff I want:
   - CV note quantizers
   - slew limiter
   - CV delay
+  - clock input/out/thru?
   
+  teensy 3.6 has only 2 DACs?
+  are the teensy adc/dacs good enough anyway?
