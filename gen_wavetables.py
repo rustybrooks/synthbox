@@ -25,9 +25,9 @@ vhalf = vmax/2
 
 wavetable_sin = [vhalf + vhalf*math.sin(x*2*math.pi/samples) for x in range(samples)]
 
-width = 8
+width = 16
 with open('wavetables.h', 'w') as f:
-    f.write("int wavetable_sin[] = {\n    ")
-    rows = [("%6d, " * (len(x)-1) + "%6d") % tuple(x) for x in chunked(wavetable_sin, width)]
-    f.write(',\n    '.join(rows))
+    f.write("uint_16t wavetable_sin[] = {\n    ")
+    rows = ["%6d, " * (len(x)) % tuple(x) for x in chunked(wavetable_sin, width)]
+    f.write('\n    '.join(rows))
     f.write("\n};\n\n")
