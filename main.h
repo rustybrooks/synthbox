@@ -1,25 +1,29 @@
-// USB MIDI receive example, Note on/off -> LED on/off
-// contributed by Alessandro Fasan
+#include "wavetables.h"
 
-//int ledPin = 13;
+const int pin_dac1 = 21; // look this up
+
+elapsedMicros last_wave = 0;
+int accumulator = 0;
+double frequency = .01;
 
 void OnNoteOn(byte channel, byte note, byte velocity) {
-//  digitalWrite(ledPin, HIGH); // Any Note-On turns on LED
 }
 
 void OnNoteOff(byte channel, byte note, byte velocity) {
-//  digitalWrite(ledPin, LOW);  // Any Note-Off turns off LED
 }
 
 void setup() {
-  pinMode(ledPin, OUTPUT);
   usbMIDI.setHandleNoteOff(OnNoteOff);
-  usbMIDI.setHandleNoteOn(OnNoteOn) ;
-//  digitalWrite(ledPin, HIGH);
-//  delay(400);                 // Blink LED once at startup
-//  digitalWrite(ledPin, LOW);
+  usbMIDI.setHandleNoteOn(OnNoteOn);
+  analogWriteResolution(16);
 }
 
 void loop() {
-  usbMIDI.read();
+  // usbMIDI.read();
+  int table_pos = int(last_wave*frequency/1e6) % 256;
+  Serial.print(table_pos); Serial.print(" ");
+  Serial.print(wavetable_sin[table_pos]); Serial.print(" ");
+  Serial.println();
+
+  analogWrite(pin_dac1, wavetable_sin[table_pos]);
 }
