@@ -1,6 +1,10 @@
+
+#include "Envelope.h"
 #include "wavetables.h"
 
-const int pin_dac1 = A21; // look this up
+const int pin_dac1 = A21; 
+const int pin_dac2 = A20;
+
 const int samples = 1024;
 
 uint16_t wavetable_zero[samples];
@@ -15,9 +19,11 @@ int accumulator = 0;
 double frequency = 5;
 double mix = 0.5;
 
+
 void OnControlChange(byte channel, byte control, byte value) {
   if (control == 0) {
-    frequency = sqrt((value+1));
+    // frequency = sqrt((value+1));
+    frequency = pow(2, value/12.0)/10;
     Serial.print("Received freq CC "); Serial.print(value);
     Serial.print(" freq = "); Serial.print(frequency);
     Serial.println();
@@ -74,7 +80,6 @@ void OnProgramChange(byte channel, byte program) {
       wave_ptr1 = wavetable_sin;
       wave_ptr2 = wavetable_zero;
   }
-
 }
 
 
